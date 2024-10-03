@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="../img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.15.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="manager.css">
+</head>
+
+<body>
+    <div class="container add" id="container">
+        <div class="brand">
+            <h3>MANAGER DASHBOARD</h3>
+            <a href="#" id="toggle"><i class="bi bi-list"></i></a>
+        </div>
+
+        <div class="navbar">
+            <ul>
+
+                <li><a href="#" onclick="dashboardshow()"><i class="bi bi-house"></i><span>DashBoard</span></a></li>
+                <li><a href="#" onclick="customershow()"><i class="bi bi-chat-right-text"></i><span>Customer</span></a>
+                </li>
+                <li><a href="#" onclick="rentalshow()"><i class="bi bi-graph-up-arrow"></i><span>Rental</span></a></li>
+                <li><a href="#" onclick="overdueshow()"><i class="bi bi-cart"></i><span>Overdue</span></a></li>
+                <li><a href="#" onclick="returnshow()"><i class="bi bi-cart"></i><span>Return</span></a></li>
+
+                <!-- Single nav item with dropdown for reports -->
+                <li>
+                    <a href="#" onclick="ReportMenu()" id="report-menu-link"><i
+                            class="bi bi-file-text"></i><span>Reports</span></a>
+
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="navbar log-out">
+            <ul>
+                <li><a href="#"><i class="bi bi-box-arrow-in-right"></i><span>Log Out</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <section class="dashboard-container" id="dashboardcontainer" style="display: none;">
+        <h1>Manager Dashboard</h1>
+
+        <form id="add-bike-form">
+            <h2>Add Bike</h2>
+            <input type="text" id="add-bike-title" placeholder="Bike Title" required>
+            <input type="text" id="add-bike-description" placeholder="Bike Description" required>
+            <input type="text" id="add-bike-reg-number" placeholder="Registration Number" required>
+            <input type="text" id="add-bike-brand" placeholder="Brand" required>
+            <input type="text" id="add-bike-model" placeholder="Model" required>
+            <input type="text" id="add-bike-category" placeholder="Category" required>
+            <input type="file" id="add-bike-image" accept="image/*" required>
+            <button type="submit">Add Bike</button>
+        </form>
+
+        <h2 style="margin-left:50px ;">Manage Bikes</h2>
+        <table id="bikes-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Registration Number</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Bikes will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="customer-container" id="customerdcontainer" style="display: none;">
+        <h2 style="margin-left:50px ;">Registered Customers</h2>
+        <table id="customer-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>NIC</th>
+                    <th>License Number</th>
+                    <th>Phone</th>
+                    <th>Rental History</th>
+                </tr>
+            </thead>
+            <tbody id="customer-body">
+                <!-- Customer details will be displayed here -->
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="rental-container" id="rentaldcontainer" style="display: none;">
+        <h2 style="margin-left:50px ;">Rental</h2>
+        <table id="rental-table">
+            <thead>
+                <tr>
+                    <th>NIC</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>regNumber</th>
+                    <th>rentDate</th>
+                    <th>status</th>
+                    <th> action</th>
+                </tr>
+            </thead>
+            <tbody id="rental-body">
+                <!-- Customer details will be displayed here -->
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="overdue-container" id="overduedcontainer" style="display: none;">
+        <h2 style="margin-left:50px ;">Overdue Alerts</h2>
+        <table id="overdue-table">
+            <thead>
+                <tr>
+                    <th>NIC</th>
+                    <th>Name</th>
+                    <th>regNumber</th>
+                    <th>retnaldate</th>
+                    <th>returndate</th>
+                    <th>totaltime</th>
+                </tr>
+            </thead>
+            <tbody id="overdue-list">
+                <!-- Overdue alerts will be displayed here -->
+            </tbody>
+
+        </table>
+        <p id="overduelist"></p>
+
+    </section>
+
+
+    <!-- Return Motorbike Section -->
+    <section class="return-container" id="returncontainer" style="display: none;">
+        <h2>Return Motorbike</h2>
+        <form id="return-motorbike-form">
+            <label for="return-nic">Customer NIC:</label>
+            <input type="text" id="return-nic" required>
+
+            <label for="return-registration">Motorbike Registration Number:</label>
+            <input type="text" id="return-registration" required>
+
+            <button type="button" onclick="returnMotorbike()">Return Motorbike</button>
+        </form>
+    </section>
+
+    <!-- report -->
+    <section class="generate-container" id="generatecontainer" style="display: none;">
+        <div class="report-button">
+            <button type="button" onclick="ReportMenu('rental')">Rental Report</button>
+            <button type="button" onclick="ReportMenu('customer')">Customer Report</button>
+            <button type="button" onclick="ReportMenu('bike')">Bike Report</button>
+        </div>
+
+        
+        <div id="report-container" >
+            <!-- Rental Report Section -->
+            <div id="rental-report-container" class="rentalreportcontainer" style="display: none;">
+                <h3>Rental Report</h3>
+                <table id="rental-report-table">
+                    <thead>
+                        <tr>
+                            <th>Customer NIC</th>
+                            <th>Motorbike Registration Number</th>
+                            <th>Rental Date</th>
+                            <th>Return Processed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rental data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Customer Report Section -->
+            <div id="customer-report-container" class="customerreportcontainer" style="display: none;">
+                <h3>Customer Report</h3>
+                <table id="customer-report-table">
+                    <thead>
+                        <tr>
+                            <th>NIC</th>
+                            <th>Name</th>
+                            <th>licence</th>
+                            <th>Phone</th>
+                            <th>Total Rentals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Customer data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bike Report Section -->
+            <div id="bike-report-container" class="bikereportcontainer" style="display: none;">
+                <h3>Bike Report</h3>
+                <table id="bike-report-table">
+                    <thead>
+                        <tr>
+                            <th>Registration Number</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Category</th>
+                            <th>Quantity Available</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Bike data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+        var toggle = document.getElementById("toggle");
+        var container = document.getElementById("container");
+
+        toggle.onclick = function () {
+            container.classList.toggle('active');
+        }
+
+
+
+    </script>
+
+
+
+
+    <script src="manager.js"></script>
+</body>
+
+</html>

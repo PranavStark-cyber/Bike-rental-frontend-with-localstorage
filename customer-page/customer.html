@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="../img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STARK INDUSTRY</title>
+    <!--box icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- css style -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- header design -->
+    <header class="header">
+        <img src="../img/logo.png" alt="logo" class="logo">
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#Rent" onclick="bikerentoption()">Rent bike</a>
+            <a href="#reviews">Review</a>
+            <a href="#Profile" id="userInfo" id="editpro">Profile</a>
+            <a href="#rentalsModal" id="rentalhistory">Rental history</a>
+            <a href="#logout" id="logoutBtn">Log out</a>
+
+            <input type="text" name="Search" id="searchBar" class="searchBar" placeholder="Search motorbikes...">
+            
+
+        </nav>
+    </header>
+
+    <section class="rent" id="Rent">
+        <h2 class="heading">Rent <span>BIKE</span></h2>
+        <div class="rent-container" id="rent-container" id="availableMotorbikeBody">
+            <!-- Cards will be inserted here -->
+        </div>
+    </section>
+
+    <!-- Review section -->
+    <section class="reviews" id="reviews">
+        <div class="heading">
+            <h3>Our Customers <span>Thoughts</span></h3>
+        </div>
+        <div class="reviews-container">
+            <div class="box">
+                <div class="rev-img">
+                    <img src="../img/bike1.jpg" alt="">
+                </div>
+                <h1>Sabbir Hossain Abir</h1>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star-half'></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, impedit eius a, laboriosam voluptas ut
+                    ad quae qui culpa consequuntur inventore, esse quam commodi fugiat tempora natus perspiciatis
+                    molestiae voluptatibus?</p>
+            </div>
+
+            <div class="box">
+                <div class="rev-img">
+                    <img src="../img/bike2.jpg" alt="">
+                </div>
+                <h1>Zakaria Bin Moti</h1>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star-half'></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque inventore quae mollitia
+                    recusandae minima placeat repudiandae, ipsam repellendus voluptas iure assumenda, incidunt a ducimus
+                    at. Necessitatibus doloribus quidem odio laboriosam.</p>
+            </div>
+
+            <div class="box">
+                <div class="rev-img">
+                    <img src="../img/img4.png" alt="">
+                </div>
+                <h1>Protick Saha</h1>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star-half'></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque ad rerum architecto aperiam error
+                    quibusdam, voluptate natus aliquam, modi quia laboriosam illum iusto repellat. Molestiae illo
+                    molestias et tenetur commodi?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="text-align: center;">Edit Profile</h2>
+            <form id="editProfileForm" class="editprofile">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="nic">Nic:</label>
+                <input type="number" id="nic" name="nic" required><br>
+
+                <label for="number">Phone Number:</label>
+                <input type="text" id="number" name="phone" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <button type="submit" class="savebutton">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rentals Modal -->
+    <div id="rentalsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRentalsModal">&times;</span>
+            <h2 style="text-align: center;">My Rentals</h2>
+            <table id="myRentalsTable" class="rentals-table">
+                <thead>
+                    <tr>
+                        <th>Registration Number</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Category</th>
+                        <th>Rent Date</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody id="myRentalsTableBody">
+                    <!-- Rental rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <footer id="Contact">
+        <div>
+            <p>Itachiuchica@gmail.com</p>
+        </div>
+        <div>
+            <p>©All rights Reserved by BikeBook 2022</p>
+        </div>
+        <div>
+            <p>0750129856</p>
+        </div>
+    </footer>
+
+    <script src="../customer-page/customer.js"></script>
+</body>
+
+</html>
